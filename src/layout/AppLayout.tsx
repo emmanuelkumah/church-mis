@@ -9,7 +9,7 @@ const AppLayout = () => {
       </div>
       <div className="flex-1 lg:ml-[290px] bg-white">
         <AppHeader />
-        <div className="p-4 md:p-6 mx-auto max-w-7xl border bg-white lg:rounded-lg">
+        <div className="p-4 md:p-6 mx-auto max-w-[1536px] border bg-white lg:rounded-lg">
           <Outlet />
         </div>
       </div>
