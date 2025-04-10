@@ -1,7 +1,17 @@
-import React from "react";
+import { Footer, Hero, Main, Navbar } from "../../components/ui/Landing";
+import LayoutWrapper from "../../layout/LayoutWrapper";
 
 const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <>
+      <LayoutWrapper>
+        <Navbar />
+        <Hero />
+        <Main />
+        <Footer />
+      </LayoutWrapper>
+    </>
+  );
 };
 
 export default Landing;
