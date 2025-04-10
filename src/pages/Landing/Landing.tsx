@@ -5,10 +5,12 @@ const Landing = () => {
   return (
     <>
       <LayoutWrapper>
-        <Navbar />
-        <Hero />
-        <Main />
-        <Footer />
+        <div className="container mx-auto">
+          <Navbar />
+          <Hero />
+          <Main />
+          <Footer />
+        </div>
       </LayoutWrapper>
     </>
   );

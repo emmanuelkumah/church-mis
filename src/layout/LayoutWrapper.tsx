@@ -8,10 +8,12 @@ const LayoutWrapper = ({
   className?: string;
 }) => {
   return (
-    <div
-      className={`relative flex flex-col w-full max-w-[120em]  h-screen overflow-hideen mx-auto ${className}`}
-    >
-      {children}
+    <div className="bg-brand-50">
+      <div
+        className={`relative flex flex-col w-full max-w-[120em]  h-screen overflow-hideen mx-auto ${className}`}
+      >
+        {children}
+      </div>
     </div>
   );
 };
