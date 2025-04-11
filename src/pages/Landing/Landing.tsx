@@ -5,8 +5,8 @@ const Landing = () => {
   return (
     <>
       <LayoutWrapper>
+        <Navbar />
         <div className="container mx-auto">
-          <Navbar />
           <Hero />
           <Main />
           <Footer />
