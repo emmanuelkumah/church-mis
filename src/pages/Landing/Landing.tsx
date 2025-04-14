@@ -1,16 +1,23 @@
-import { Footer, Hero, Main, Navbar } from "../../components/ui/Landing";
+import {
+  Footer,
+  Hero,
+  Main,
+  Navbar,
+  VisionMisson,
+} from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
 
 const Landing = () => {
   return (
     <>
       <LayoutWrapper>
-        <Navbar />
         <div className="container mx-auto">
+          <Navbar />
           <Hero />
-          <Main />
-          <Footer />
         </div>
+        <VisionMisson />
+        <Main />
+        <Footer />
       </LayoutWrapper>
     </>
   );
