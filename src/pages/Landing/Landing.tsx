@@ -16,7 +16,10 @@ const Landing = () => {
           <Hero />
         </div>
         <VisionMisson />
-        <Main />
+        <div className="container mx-auto">
+          <Main />
+        </div>
+
         <Footer />
       </LayoutWrapper>
     </>

@@ -4,7 +4,7 @@ const Group = () => {
       <h3 className="text-xl">Generational Groups </h3>
       <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mt-6">
         <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <p>CS</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
@@ -12,7 +12,7 @@ const Group = () => {
           </p>
         </div>
         <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <p>JY</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
@@ -20,7 +20,7 @@ const Group = () => {
           </p>
         </div>
         <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <p>JY</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
@@ -28,7 +28,7 @@ const Group = () => {
           </p>
         </div>
         <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <p>JY</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
@@ -36,7 +36,7 @@ const Group = () => {
           </p>
         </div>
         <div className="bg-white rounded-2xl p-8">
-          <p>JY</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
@@ -44,7 +44,7 @@ const Group = () => {
           </p>
         </div>
         <div className="bg-white rounded-2xl p-8">
-          <p>JY</p>
+          <img src="../../../../../images/CSlogo.png" alt="" />
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia

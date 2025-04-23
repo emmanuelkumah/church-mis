@@ -14,7 +14,7 @@ const Hero = () => {
           </h3>
         </div>
 
-        <p className="hero-text">
+        <p className="heading-text">
           The Presbyterian Church of Ghana (PCG), is Ghana’s oldest continuing
           existing church. It is the product of a quadruple heritage: The Basel
           Mission, African Christians from the Caribbean, the Scottish Mission,

@@ -57,7 +57,7 @@
   --text-title-sm--line-height: 38px;
   --text-theme-xl: 20px;
   --text-theme-xl--line-height: 30px;
-  --text-theme-sm: 14px;
+  --text-theme-sm: 16px;
   --text-theme-sm--line-height: 20px;
   --text-theme-xs: 12px;
   --text-theme-xs--line-height: 18px;
@@ -88,8 +88,11 @@ body {
     @apply relative font-outfit z-1 bg-gray-50;
   } */
 }
-@utility hero-text {
+@utility heading-text {
   @apply text-theme-xl pt-4 font-light leading-6 md:leading-8 md:pr-[30%];
+}
+@utility paragraph-text {
+  @apply text-theme-sm pt-4 font-light leading-6 md:leading-8;
 }
 @utility subHeading {
   @apply text-title-sm font-normal leading-6 md:leading-8;
