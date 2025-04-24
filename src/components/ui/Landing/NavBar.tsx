@@ -3,6 +3,7 @@ import { CiMenuBurger } from "react-icons/ci";
 import { RiCloseLargeFill } from "react-icons/ri";
 
 import { Link } from "react-router";
+import PCGLogo from "../../../assets/images/pcglogo.png";
 
 const NavBar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -15,11 +16,7 @@ const NavBar = () => {
       <div className="flex justify-between items-center h-16 px-4">
         {/* Logo and primary nav */}
         <div>
-          <img
-            src="../../../../../images/pcglogo.png"
-            width={100}
-            alt="PCG logo"
-          />
+          <img src={PCGLogo} width={100} alt="PCG logo" />
         </div>
 
         {/* Primary nav and cta hidden  on mobile */}
@@ -83,7 +80,7 @@ const NavBar = () => {
             to="#"
             className="hover:text-brand-500 transition-all duration-300 ease-in-out"
           >
-            Features
+            Groups
           </Link>
         </div>
         <div className="mt-4">
