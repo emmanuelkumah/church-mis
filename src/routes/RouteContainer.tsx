@@ -2,11 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import LayoutWrapper from "../layout/LayoutWrapper";
 import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
-
+import Landing from "../pages/Landing/Landing";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Home page</h1>,
+    element: <Landing />,
   },
   { path: "/signup", element: <h1>Sign up page</h1> },
   {

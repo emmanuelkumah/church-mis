@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @layer theme, base, components, utilities;
 
 @theme {
-  --font-outfit: "Outfit", sans-serif;
-
+  --font-poppins: "Poppins", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
   --color-brand-25: #f2f7ff;
   --color-brand-50: #ecf3ff;
   --color-brand-100: #dde9ff;
@@ -58,7 +57,7 @@
   --text-title-sm--line-height: 38px;
   --text-theme-xl: 20px;
   --text-theme-xl--line-height: 30px;
-  --text-theme-sm: 14px;
+  --text-theme-sm: 16px;
   --text-theme-sm--line-height: 20px;
   --text-theme-xs: 12px;
   --text-theme-xs--line-height: 18px;
@@ -82,11 +81,21 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Poppins, sans-serif;
 }
 @layer base {
-  body {
+  /* body {
     @apply relative font-outfit z-1 bg-gray-50;
-  }
+  } */
+}
+@utility heading-text {
+  @apply text-theme-xl pt-4 font-light leading-6 md:leading-8 md:pr-[30%];
+}
+@utility paragraph-text {
+  @apply text-theme-sm pt-4 font-light leading-6 md:leading-8;
+}
+@utility subHeading {
+  @apply text-title-sm font-normal leading-6 md:leading-8;
 }
 @utility menu-item {
   @apply relative flex items-center w-full gap-3 px-3 py-2 font-medium rounded-lg text-theme-sm;
