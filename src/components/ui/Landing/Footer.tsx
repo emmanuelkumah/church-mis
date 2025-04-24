@@ -1,10 +1,12 @@
 const Footer = () => {
   return (
-    <footer>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime veniam
-      odit modi praesentium eligendi facilis impedit asperiores hic dolorem
-      quia. Quos, esse praesentium fugit ratione eligendi eos aliquam facere
-      quam.
+    <footer className="bg-gray-950 text-white py-8 mt-8">
+      <div>
+        <p className="text-center text-sm text-gray-500 py-4">
+          &copy; {new Date().getFullYear()} PCG Liberty Congregation. All rights
+          reserved.
+        </p>
+      </div>
     </footer>
   );
 };
