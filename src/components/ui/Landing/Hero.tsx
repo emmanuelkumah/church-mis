@@ -1,3 +1,4 @@
+import HeroImage from "../../../assets/images/HeroImg.png";
 const Hero = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 px-4  h-100vh">
@@ -25,8 +26,9 @@ const Hero = () => {
       </section>
       <section className="pt-8 md:pt-32">
         <img
-          src="../../../../../images/HeroImg.png"
+          src={HeroImage}
           alt="Congregants praying"
+          className="max-w-[100%]"
         />
       </section>
     </div>

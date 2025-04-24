@@ -1,3 +1,4 @@
+import AboutImage from "../../../assets/images/PCGAbout.png";
 import Group from "./Group";
 
 const Main = () => {
@@ -6,7 +7,7 @@ const Main = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 md:mt-10">
         <section className="px-4">
           <img
-            src="../../../../images/PCGAbout.png"
+            src={AboutImage}
             alt="Congregant praising God"
             className="rounded-xl border-0 border-l-8 border-red-500"
           />
@@ -34,12 +35,12 @@ const Main = () => {
           </p>
         </section>
       </div>
-      <section className="flex justify-center my-6">
+      <section className="flex justify-center my-8">
         <p className="text-title-sm text-center md:text-title-xs font-extralight capitalize">
           Bringing hope to our Generational.
         </p>
       </section>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-4 bg-brand-500 rounded-2xl p-6">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-4 bg-brand-500 rounded-2xl p-6 mx-6">
         <div className="flex items-center gap-8 md:gap-4">
           <div className="bg-amber-300 h-24 w-24 rounded-full"></div>
           <div className="flex flex-col">

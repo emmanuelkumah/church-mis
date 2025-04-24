@@ -1,56 +1,21 @@
+import Card from "../../common/card/Card";
+import { generationalGroups } from "../../../data/GenerationalGroups";
 const Group = () => {
   return (
     <section>
-      <h3 className="text-xl">Generational Groups </h3>
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mt-6">
-        <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
-        <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
-        <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
-        <div className="bg-white rounded-2xl p-8 hover:shadow-2xl">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
-        <div className="bg-white rounded-2xl p-8">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
-        <div className="bg-white rounded-2xl p-8">
-          <img src="../../../../../images/CSlogo.png" alt="" />
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Perspiciatis tenetur quo sunt quod consequatur voluptatem fuga quia
-            sit dolore eaque?
-          </p>
-        </div>
+      <h3 className="text-xl md:text-title-sm text-center md:text-title-xs font-extralight capitalize my-6">
+        Generational Groups
+      </h3>
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 mx-4">
+        {generationalGroups.map((group, index) => (
+          <Card
+            key={index}
+            caption={group.caption}
+            description={group.description}
+            image={group.image}
+            className="h-36 w-36 rounded-full"
+          />
+        ))}
       </div>
     </section>
   );
