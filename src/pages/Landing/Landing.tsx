@@ -1,5 +1,3 @@
-import { Link, useLocation } from "react-router";
-
 import {
   Footer,
   Group,
@@ -9,28 +7,16 @@ import {
   VisionMisson,
 } from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
-import { useEffect } from "react";
+import { useScrollAnchor } from "../../hooks/useScrollAnchor";
 
-const ScrollToSection: React.FC = () => {
-  const location = useLocation();
-  useEffect(() => {
-    if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      } else {
-        window.scrollTo(0, 0);
-      }
-    }
-  }, [location.hash]);
-
-  return null;
-};
 const Landing = () => {
+  useScrollAnchor({
+    behavior: "smooth",
+    block: "start",
+  });
   return (
     <>
       <LayoutWrapper>
-        <ScrollToSection />
         <Navbar />
         <div className="container mx-auto">
           <section id="home">

@@ -73,7 +73,7 @@ const NavBar = () => {
       >
         <div className="flex flex-col space-y-4 px-4">
           <Link
-            to="#"
+            to="#home"
             className="hover:text-brand-500 transition-all duration-300 ease-in-out mt-4"
           >
             Home
@@ -83,6 +83,12 @@ const NavBar = () => {
             className="hover:text-brand-500 transition-all duration-300 ease-in-out"
           >
             About
+          </Link>
+          <Link
+            to="#VisionMission"
+            className="hover:text-brand-500 transition-all duration-300 ease-in-out"
+          >
+            Vision & Mission
           </Link>
           <Link
             to="#groups"
