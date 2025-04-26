@@ -12,7 +12,7 @@ const NavBar = () => {
     setOpenMenu((prevVal) => !prevVal);
   };
   return (
-    <nav className="relative border-b-1 border-gray-300 shadow-xs">
+    <nav className="bg-white sticky border-b-1 border-gray-300 shadow-xs md:px-[10%]  top-0 z-50">
       <div className="flex justify-between items-center h-16 px-4">
         {/* Logo and primary nav */}
         <div>
@@ -23,13 +23,13 @@ const NavBar = () => {
         <div className="hidden md:flex md:gap-32 items-center">
           <div className="hidden md:flex items-center space-x-8">
             <Link
-              to="#"
+              to="#home"
               className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
             >
               Home
             </Link>
             <Link
-              to="#"
+              to="#about"
               className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
             >
               About
@@ -38,13 +38,15 @@ const NavBar = () => {
               to="#"
               className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
             >
-              Features
+              Groups
             </Link>
           </div>
           <div>
-            <button className="w-full bg-brand-500 rounded-lg px-4 py-2 text-white hover:bg-brand-400 cursor-pointer">
-              Login
-            </button>
+            <Link to="/login">
+              <button className="w-full bg-brand-500 rounded-lg px-4 py-2 text-white hover:bg-brand-400 cursor-pointer">
+                Login
+              </button>
+            </Link>
           </div>
         </div>
         {/* mobile menu button */}
@@ -71,13 +73,13 @@ const NavBar = () => {
             Home
           </Link>
           <Link
-            to="#"
+            to="#about"
             className="hover:text-brand-500 transition-all duration-300 ease-in-out"
           >
             About
           </Link>
           <Link
-            to="#"
+            to="#groups"
             className="hover:text-brand-500 transition-all duration-300 ease-in-out"
           >
             Groups
@@ -85,7 +87,7 @@ const NavBar = () => {
         </div>
         <div className="mt-4">
           <button className="w-full bg-brand-500 rounded-xs px-4 py-2 text-white hover:bg-brand-400 cursor-pointer">
-            Sign up
+            Login
           </button>
         </div>
       </div>

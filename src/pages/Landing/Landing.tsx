@@ -1,25 +1,51 @@
+import { Link, useLocation } from "react-router";
+
 import {
   Footer,
+  Group,
   Hero,
   Main,
   Navbar,
   VisionMisson,
 } from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
+import { useEffect } from "react";
 
 const Landing = () => {
+  const scrollToSection = () => {
+    const location = useLocation();
+    useEffect(() => {
+      if (location.hash) {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }
+    }, [location.hash]);
+
+    return null;
+  };
   return (
     <>
       <LayoutWrapper>
-        <div className="container mx-auto">
-          <Navbar />
-          <Hero />
-        </div>
-        <VisionMisson />
-        <div className="container mx-auto">
-          <Main />
-        </div>
+        <Navbar />
 
+        <div className="container mx-auto">
+          <section id="home">
+            <Hero />
+          </section>
+          <section id="VisionMission">
+            <VisionMisson />
+          </section>
+          <section id="about">
+            <Main />
+          </section>
+          <section id="groups">
+            <Group />
+          </section>
+        </div>
         <Footer />
       </LayoutWrapper>
     </>
