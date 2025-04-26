@@ -11,27 +11,27 @@ import {
 import LayoutWrapper from "../../layout/LayoutWrapper";
 import { useEffect } from "react";
 
-const Landing = () => {
-  const scrollToSection = () => {
-    const location = useLocation();
-    useEffect(() => {
-      if (location.hash) {
-        const element = document.querySelector(location.hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo(0, 0);
-        }
+const ScrollToSection: React.FC = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo(0, 0);
       }
-    }, [location.hash]);
+    }
+  }, [location.hash]);
 
-    return null;
-  };
+  return null;
+};
+const Landing = () => {
   return (
     <>
       <LayoutWrapper>
+        <ScrollToSection />
         <Navbar />
-
         <div className="container mx-auto">
           <section id="home">
             <Hero />

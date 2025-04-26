@@ -35,7 +35,13 @@ const NavBar = () => {
               About
             </Link>
             <Link
-              to="#"
+              to="#VisionMission"
+              className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
+            >
+              Vision & Mission
+            </Link>
+            <Link
+              to="#groups"
               className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
             >
               Groups
