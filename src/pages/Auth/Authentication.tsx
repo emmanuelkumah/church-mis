@@ -1,5 +1,10 @@
+import { SignUp } from "../../components/ui/Authentication";
 const Authentication = () => {
-  return <div>Authentication</div>;
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
 };
 
 export default Authentication;

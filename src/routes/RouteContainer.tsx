@@ -2,13 +2,19 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import LayoutWrapper from "../layout/LayoutWrapper";
 import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
+import Landing from "../pages/Landing/Landing";
+import Authentication from "../pages/Auth/Authentication";
+import Login from "../pages/Auth/Login";
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <h1>Home page</h1>,
+    element: <Landing />,
   },
-  { path: "/signup", element: <h1>Sign up page</h1> },
+
+  { path: "/signup", element: <Authentication /> },
+  { path: "/login", element: <Login /> },
+
   {
     path: "/app",
     element: <AppLayout />,

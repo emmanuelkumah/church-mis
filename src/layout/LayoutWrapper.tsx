@@ -1,8 +1,16 @@
 import { ReactNode } from "react";
 
-const LayoutWrapper = ({ children }: { children: ReactNode }) => {
+const LayoutWrapper = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
-    <div className="relative w-full max-w-[120em] h-screen overflow-hideen mx-auto">
+    <div
+      className={`relative flex flex-col bg-brand-50  min-h-screen w-full max-w-[120em]  ${className}`}
+    >
       {children}
     </div>
   );
