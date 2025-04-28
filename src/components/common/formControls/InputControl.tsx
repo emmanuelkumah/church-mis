@@ -14,12 +14,14 @@ interface InputControlProps {
   error?: boolean;
   success?: boolean;
   hint?: string;
+  name?: string;
 }
 
 const InputControl: React.FC<InputControlProps> = ({
   type,
   placeholder,
   value,
+  name,
   className,
   min,
   max,
@@ -53,6 +55,7 @@ const InputControl: React.FC<InputControlProps> = ({
         min={min}
         disabled={disabled}
         required={required}
+        name={name}
       />
       {hint && <p>{hint}</p>}
     </div>

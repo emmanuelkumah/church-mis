@@ -4,13 +4,15 @@ import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
 import Landing from "../pages/Landing/Landing";
 import Authentication from "../pages/Auth/Authentication";
+import Login from "../pages/Auth/Login";
+
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
   },
   { path: "/signup", element: <Authentication /> },
-  { path: "/login", element: "Login" },
+  { path: "/login", element: <Login /> },
   {
     path: "/app",
     element: <AppLayout />,

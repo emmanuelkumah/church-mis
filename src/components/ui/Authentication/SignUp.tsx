@@ -9,7 +9,7 @@ import { Link } from "react-router";
 const SignUp = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4">
-      <div className="hidden sm:block sm:bg-red-500 sm:h-screen  md:p-6 md:flex md:flex-col md:justify-center md:items-center">
+      <div className="hidden sm:block sm:bg-red-500 sm:min-h-screen  md:p-6 md:flex md:flex-col md:justify-center md:items-center">
         <HeadingWithSubHeading
           heading="Welcome to Liberty CMS"
           subHeading="Stay up to date with congregants"
@@ -17,8 +17,12 @@ const SignUp = () => {
         />
       </div>
       <div className="col-span-3">
+        <Link to={"/"} className="flex items-center p-4">
+          <Button text="Go Back" />
+        </Link>
+
         <div className="grid place-items-center min-h-screen">
-          <CardComponent className="w-full md:w-[80%] p-4 ">
+          <CardComponent className="w-[80%] p-4 ">
             <form>
               <HeadingWithSubHeading
                 heading="Get Started"
@@ -37,8 +41,9 @@ const SignUp = () => {
                     type="text"
                     placeholder="Enter your first name "
                     required={true}
-                    id="fullname"
+                    id="firstname"
                     className="w-1/2"
+                    name="firstname"
                   />
                 </div>
                 <div>
@@ -53,6 +58,7 @@ const SignUp = () => {
                     placeholder="Enter your last name "
                     required={true}
                     id="lastname"
+                    name="lastname"
                   />
                 </div>
               </div>
@@ -65,6 +71,7 @@ const SignUp = () => {
                 placeholder="Enter your email address"
                 required={true}
                 id="email"
+                name="email"
               />
               <Label htmlFor="password">
                 <HeadingWithSubHeading heading="Password" headingSize="small" />
@@ -74,6 +81,7 @@ const SignUp = () => {
                 placeholder="Enter password"
                 required={true}
                 id="password"
+                name="password"
                 hint="Use at least 8 characters with a mix of letters, numbers & symbols"
               />
               <Label htmlFor="confirmPassword">
@@ -87,6 +95,7 @@ const SignUp = () => {
                 placeholder="Confirm password"
                 required={true}
                 id="confirmPassword"
+                name="confirmPassword"
               />
               <Button
                 text="Sign up"
