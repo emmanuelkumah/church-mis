@@ -70,7 +70,6 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <Group />
     </main>
   );
 };
