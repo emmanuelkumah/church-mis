@@ -6,6 +6,7 @@ interface HeadingWithSubHeadingProps {
   headingSize?: "large" | "medium" | "small";
   color?: "dark" | "light" | "primary" | "secondary";
   align?: "left" | "center" | "right";
+  className?: string;
 }
 
 const HeadingWithSubHeading: React.FC<HeadingWithSubHeadingProps> = ({
@@ -24,7 +25,7 @@ const HeadingWithSubHeading: React.FC<HeadingWithSubHeadingProps> = ({
   //color classes
   const colorClasses = {
     dark: "text-gray-900",
-    light: "text-gray-100",
+    light: "text-white",
     primary: "text-blue-500",
     secondary: "text-green-500",
   };
@@ -35,9 +36,9 @@ const HeadingWithSubHeading: React.FC<HeadingWithSubHeadingProps> = ({
     right: "text-right",
   };
   return (
-    <div className="mb-6">
+    <div>
       <h2
-        className={`font-bold tracking-tight  ${headingSizeClasses[headingSize]} ${colorClasses[color]} ${alignmentClasses[align]}`}
+        className={`font-light tracking-tight text-pretty ${headingSizeClasses[headingSize]} ${colorClasses[color]} ${alignmentClasses[align]}`}
       >
         {heading}
       </h2>
