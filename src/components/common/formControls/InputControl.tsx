@@ -1,34 +1,18 @@
-interface InputControlProps {
-  type?: "text" | "email" | "password" | "number";
-  placeholder?: string;
-  id?: string;
-  className?: string;
-  value?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  maxLength?: number;
-  minLength?: number;
-  min?: string;
-  max?: string;
-  disabled?: boolean;
-  required?: boolean;
-  error?: boolean;
-  success?: boolean;
-  hint?: string;
-  name?: string;
-}
+import { SignUpFormFieldsProps } from "../../../types/types";
 
-const InputControl: React.FC<InputControlProps> = ({
+const InputControl: React.FC<SignUpFormFieldsProps> = ({
   type,
   placeholder,
   value,
   name,
+  register,
   className,
   min,
   max,
   id,
   disabled,
   required,
-  error = false,
+  error,
   success = false,
   hint,
 }) => {
@@ -54,9 +38,13 @@ const InputControl: React.FC<InputControlProps> = ({
         max={max}
         min={min}
         disabled={disabled}
-        required={required}
-        name={name}
+        {...register(name, { required })}
       />
+      {error && (
+        <p className="text-red-500 text-sm mt-1">
+          {error?.message || "This field is required"}
+        </p>
+      )}
       {hint && <p>{hint}</p>}
     </div>
   );
