@@ -7,18 +7,18 @@ import {
 } from "../../common";
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
-import { FormData } from "../../../types/types";
+import { SignUpFormData } from "../../../types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { formSchema } from "../../../types/types";
+import { signUpformSchema } from "../../../types/types";
 const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  } = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpformSchema),
   });
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: SignUpFormData) => {
     console.log(data);
   };
   return (

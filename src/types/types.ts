@@ -1,15 +1,18 @@
 import { FieldError, UseFormRegister } from "react-hook-form";
 import { z, ZodType } from "zod";
 
-export type FormData = {
+export type SignUpFormData = {
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
-
-export type FormFieldsProps = {
+export type LoginFormData = {
+  email: string;
+  password: string;
+};
+export type SignUpFormFieldsProps = {
   type?: ValidInputFieldsType;
   placeholder?: string;
   id?: string;
@@ -25,7 +28,7 @@ export type FormFieldsProps = {
   success?: boolean;
   hint?: string;
   name: ValidFieldNames;
-  register: UseFormRegister<FormData>;
+  register: UseFormRegister<SignUpFormData>;
   error?: FieldError;
   valueAsNumber?: boolean;
 };
@@ -40,7 +43,7 @@ export type ValidFieldNames =
   | "confirmPassword";
 
 // Form validation schema using Zod
-export const formSchema: ZodType = z
+export const signUpformSchema: ZodType = z
   .object({
     firstName: z.string().min(1, "First name is required"),
     lastName: z.string().min(1, "Last name is required"),
@@ -60,3 +63,8 @@ export const formSchema: ZodType = z
     message: "Passwords don't match",
     path: ["confirmPassword"],
   });
+
+export const loginFormSchema: ZodType = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(1, "Password is required"),
+});
