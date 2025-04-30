@@ -6,7 +6,21 @@ import {
   Button,
 } from "../../common";
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { FormData } from "../../../types/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema } from "../../../types/types";
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
+  const onSubmit = async (data: FormData) => {
+    console.log(data);
+  };
   return (
     <div className="grid grid-cols-1 md:grid-cols-4">
       <div className="hidden sm:block sm:bg-red-500 sm:min-h-screen  md:p-6 md:flex md:flex-col md:justify-center md:items-center">
@@ -23,7 +37,7 @@ const SignUp = () => {
 
         <div className="grid place-items-center min-h-screen">
           <CardComponent className="w-[80%] p-4 ">
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <HeadingWithSubHeading
                 heading="Get Started"
                 subHeading="Create an account"
@@ -43,7 +57,10 @@ const SignUp = () => {
                     required={true}
                     id="firstname"
                     className="w-1/2"
-                    name="firstname"
+                    name="firstName"
+                    register={register}
+                    error={errors.firstName}
+                    success={!!errors.firstName}
                   />
                 </div>
                 <div>
@@ -58,7 +75,9 @@ const SignUp = () => {
                     placeholder="Enter your last name "
                     required={true}
                     id="lastname"
-                    name="lastname"
+                    name="lastName"
+                    register={register}
+                    error={errors.lastName}
                   />
                 </div>
               </div>
@@ -72,6 +91,8 @@ const SignUp = () => {
                 required={true}
                 id="email"
                 name="email"
+                register={register}
+                error={errors.email}
               />
               <Label htmlFor="password">
                 <HeadingWithSubHeading heading="Password" headingSize="small" />
@@ -82,6 +103,8 @@ const SignUp = () => {
                 required={true}
                 id="password"
                 name="password"
+                register={register}
+                error={errors.password}
                 hint="Use at least 8 characters with a mix of letters, numbers & symbols"
               />
               <Label htmlFor="confirmPassword">
@@ -94,14 +117,17 @@ const SignUp = () => {
                 type="password"
                 placeholder="Confirm password"
                 required={true}
+                register={register}
+                error={errors.confirmPassword}
                 id="confirmPassword"
                 name="confirmPassword"
               />
               <Button
                 text="Sign up"
-                disabled={true}
+                disabled={false}
                 type="submit"
                 className="mt-4"
+                isSubmitting={isSubmitting}
               />
             </form>
             <section>

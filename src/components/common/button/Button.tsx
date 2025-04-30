@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "danger" | "success";
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  isSubmitting?: boolean;
 }
 const Button: React.FC<ButtonProps> = ({
   text,
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   endIcon,
   size = "medium",
   variant = "primary",
+  isSubmitting,
 }) => {
   //Size classes
   const sizeClasses = {
@@ -45,9 +47,10 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={type}
     >
-      {text}
+      {isSubmitting ? "Submitting..." : text}
       {startIcon && <span className="ml-2">{startIcon}</span>}
       {endIcon && <span className="ml-2">{endIcon}</span>}
+      <span className="text-red-400">{isSubmitting}</span>
     </button>
   );
 };
