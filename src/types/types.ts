@@ -68,3 +68,27 @@ export const loginFormSchema: ZodType = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
 });
+
+// Tables
+export type TableProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableHeaderProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableBodyProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export type TableRowProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableCellProps = {
+  children: React.ReactNode;
+  className?: string;
+  isHeader?: boolean;
+};
