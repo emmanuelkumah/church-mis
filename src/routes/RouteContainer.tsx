@@ -4,7 +4,15 @@ import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
 import Landing from "../pages/Landing/Landing";
 import Authentication from "../pages/Auth/Authentication";
-import Login from "../pages/Auth/Login";
+import {
+  ChildrenService,
+  JuniorYouth,
+  YAF,
+  WomenFellowship,
+  MensFellowship,
+  Login,
+  Register,
+} from "../pages";
 
 const routes = createBrowserRouter([
   {
@@ -12,7 +20,7 @@ const routes = createBrowserRouter([
     element: <Landing />,
   },
 
-  { path: "/signup", element: <Authentication /> },
+  { path: "/signup", element: <Register /> },
   { path: "/login", element: <Login /> },
 
   {
@@ -26,23 +34,23 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "cs",
-            element: <h1>children service page</h1>,
+            element: <ChildrenService />,
           },
           {
             path: "jy",
-            element: <h1>JY page</h1>,
+            element: <JuniorYouth />,
           },
           {
             path: "yaf",
-            element: <h1>YAF page</h1>,
+            element: <YAF />,
           },
           {
             path: "mens",
-            element: <h1>mens page</h1>,
+            element: <MensFellowship />,
           },
           {
             path: "womens",
-            element: <h1>women page</h1>,
+            element: <WomenFellowship />,
           },
         ],
       },

@@ -10,14 +10,14 @@ const AppLayout = () => {
         <AppSidebar />
       </div>
       <div
-        className={`flex-1 transition-all duration-300 ease-in-out bg-white ${
+        className={`flex-1 transition-all duration-300 ease-in-out bg-gray-50 ${
           isSidebarExpanded || isSidebarHovered
             ? "lg:ml-[290px]"
             : "lg:ml-[90px]"
         }  ${isMobileOpen && "ml-0"} `}
       >
         <AppHeader />
-        <div className="p-4 md:p-6 mx-auto max-w-[1536px] border bg-white lg:rounded-lg">
+        <div className="p-4 md:p-8 mx-auto max-w-[1536px]">
           <Outlet />
         </div>
       </div>
