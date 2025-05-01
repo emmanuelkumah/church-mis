@@ -12,7 +12,21 @@ export type LoginFormData = {
   email: string;
   password: string;
 };
-export type SignUpFormFieldsProps = {
+
+export type CSFormData = {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  age: number;
+  fatherName: string;
+  motherName: string;
+  contact?: string;
+  residence: string;
+
+  image?: string;
+};
+
+export type FormFieldsProps<T extends Record<string, any>> = {
   type?: ValidInputFieldsType;
   placeholder?: string;
   id?: string;
@@ -27,12 +41,22 @@ export type SignUpFormFieldsProps = {
   required?: boolean;
   success?: boolean;
   hint?: string;
-  name: ValidFieldNames;
-  register: UseFormRegister<SignUpFormData>;
+  name: string;
+  register: UseFormRegister<T>;
   error?: FieldError;
   valueAsNumber?: boolean;
 };
 
+export type ChildrenServiceFieldProps = {
+  type?: ValidInputFieldsType;
+  placeholder?: string;
+  id?: string;
+  className?: string;
+  value?: string | number;
+  register: UseFormRegister<CSFormData>;
+  name: string;
+  error?: FieldError;
+};
 export type ValidInputFieldsType = "text" | "email" | "password" | "number";
 
 export type ValidFieldNames =

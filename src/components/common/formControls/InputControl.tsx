@@ -1,6 +1,9 @@
-import { SignUpFormFieldsProps } from "../../../types/types";
+import {
+  FormFieldsProps,
+  ChildrenServiceFieldProps,
+} from "../../../types/types";
 
-const InputControl: React.FC<SignUpFormFieldsProps> = ({
+const InputControl: React.FC<FormFieldsProps | ChildrenServiceFieldProps> = ({
   type,
   placeholder,
   value,

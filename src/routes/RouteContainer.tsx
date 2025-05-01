@@ -12,6 +12,7 @@ import {
   MensFellowship,
   Login,
   Register,
+  NewCSMember,
 } from "../pages";
 
 const routes = createBrowserRouter([
@@ -34,7 +35,13 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "cs",
-            element: <ChildrenService />,
+            children: [
+              { index: true, element: <ChildrenService /> },
+              {
+                path: "new",
+                element: <NewCSMember />,
+              },
+            ],
           },
           {
             path: "jy",

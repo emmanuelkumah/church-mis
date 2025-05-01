@@ -47,8 +47,9 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={type}
     >
-      {isSubmitting ? "Submitting..." : text}
       {startIcon && <span className="ml-2">{startIcon}</span>}
+
+      {isSubmitting ? "Submitting..." : text}
       {endIcon && <span className="ml-2">{endIcon}</span>}
       <span className="text-red-400">{isSubmitting}</span>
     </button>
