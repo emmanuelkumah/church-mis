@@ -1,9 +1,6 @@
-import {
-  FormFieldsProps,
-  ChildrenServiceFieldProps,
-} from "../../../types/types";
+import { FormFieldsProps } from "../../../types/types";
 
-const InputControl: React.FC<FormFieldsProps | ChildrenServiceFieldProps> = ({
+const InputControl: React.FC<FormFieldsProps<any>> = ({
   type,
   placeholder,
   value,

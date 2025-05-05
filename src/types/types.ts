@@ -17,12 +17,11 @@ export type CSFormData = {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  age: number;
+  age: string;
   fatherName: string;
   motherName: string;
-  contact?: string;
+  contact?: number;
   residence: string;
-
   image?: string;
 };
 
@@ -57,7 +56,12 @@ export type ChildrenServiceFieldProps = {
   name: string;
   error?: FieldError;
 };
-export type ValidInputFieldsType = "text" | "email" | "password" | "number";
+export type ValidInputFieldsType =
+  | "text"
+  | "email"
+  | "password"
+  | "number"
+  | "date";
 
 export type ValidFieldNames =
   | "firstName"
@@ -91,6 +95,17 @@ export const signUpformSchema: ZodType = z
 export const loginFormSchema: ZodType = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
+});
+
+export const csFormSchema: ZodType = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  dateOfBirth: z.string().min(1, "Date of birth is required"),
+  age: z.coerce.number().min(1, "Age is required"),
+  fatherName: z.string().min(1, "Father's name is required"),
+  motherName: z.string().min(1, "Mother's name is required"),
+  contact: z.string().optional(),
+  residence: z.string().min(1, "Residence is required"),
 });
 
 // Tables
