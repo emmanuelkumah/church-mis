@@ -131,3 +131,18 @@ export type TableCellProps = {
   className?: string;
   isHeader?: boolean;
 };
+
+//Modal Props
+
+export interface ModalProps {
+  className?: string;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  title?: string;
+  closeOnOverlayClick?: boolean;
+  closeOnEsc?: boolean;
+  showCloseButton?: boolean;
+  width?: string;
+  height?: string;
+}

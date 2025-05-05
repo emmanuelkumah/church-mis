@@ -4,3 +4,4 @@ export { default as HeadingWithSubHeading } from "../common/typography/HeadingWi
 export { default as Button } from "../common/button/Button";
 export { default as Label } from "../common/formControls/Label";
 export { default as Paginate } from "../common/pagination/Paginate";
+export { default as Modal } from "../common/modal/Modal";

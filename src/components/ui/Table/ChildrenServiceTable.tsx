@@ -9,6 +9,9 @@ import {
 import { CSTableData } from "../../../data/GenerationalGroups";
 import { GoBack } from "../../common/button";
 import { Paginate } from "../../common";
+import { BiEdit, BiTrash } from "react-icons/bi";
+import { FaUser } from "react-icons/fa6";
+import { Modal } from "../../common";
 
 interface CSTTableDateProps {
   id: number;
@@ -55,7 +58,7 @@ const tableData: CSTTableDateProps[] = [
 const ChildrenServiceTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Number of items per page
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const totalItems = Math.ceil(tableData.length / itemsPerPage); // Total number of items (replace with your data length)
 
   const currentData = CSTableData.slice(
@@ -70,6 +73,13 @@ const ChildrenServiceTable = () => {
 
   return (
     <div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Delete Member"
+      >
+        Are you sure you want to delete?
+      </Modal>
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
         <div className="max-w-full overflow-x-auto">
           <Table>
@@ -130,6 +140,12 @@ const ChildrenServiceTable = () => {
                 >
                   Residence
                 </TableCell>
+                <TableCell
+                  isHeader
+                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                >
+                  Action
+                </TableCell>
               </TableRow>
             </TableHeader>
 
@@ -172,6 +188,16 @@ const ChildrenServiceTable = () => {
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                     {data.residence}
+                  </TableCell>
+                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                    <div className="flex items-center gap-2">
+                      <BiEdit className="text-green-700 hover:text-green-300 cursor-pointer" />
+                      <BiTrash
+                        className="text-red-600 hover:text-red-400  cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
+                      />
+                      <FaUser className="cursor-pointer" />
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
