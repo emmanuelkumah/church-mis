@@ -10,7 +10,7 @@ const ChildrenService = () => {
           variant="primary"
           text="Add Member"
           size="small"
-          className="mb-4"
+          className="mb-4 cursor-pointer"
           startIcon={<PlusIcon className="h-4 w-4" />}
           onClick={() => console.log("Add Member")}
           type="button"
