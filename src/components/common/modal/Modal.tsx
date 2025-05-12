@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({
 
   return ReactDOM.createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 bg-gray-600 bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-300 bg-slate-500/75"
       onClick={handleOverlayClick}
     >
       <div
