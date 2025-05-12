@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { ChildrenServiceTable } from "../../components/ui/Table";
 import { Button, SearchInput } from "../../components/common";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { Link } from "react-router";
+
 const ChildrenService = () => {
-  const handleSearchTerm = (searchTerm: { searchTerm: string }) => {
-    console.log(searchTerm);
+  const [searchInput, setSearchInput] = useState("");
+  const handleSearchTerm = (searchTerm: string) => {
+    setSearchInput(searchTerm);
   };
   return (
     <div>
@@ -27,7 +30,7 @@ const ChildrenService = () => {
         />
       </div>
 
-      <ChildrenServiceTable />
+      <ChildrenServiceTable search={searchInput} />
     </div>
   );
 };

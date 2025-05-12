@@ -7,7 +7,6 @@ import {
   TableRow,
 } from "../../common/table";
 import { CSTableData } from "../../../data/GenerationalGroups";
-import { GoBack } from "../../common/button";
 import { Paginate } from "../../common";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { FaUser } from "react-icons/fa6";
@@ -56,7 +55,7 @@ const tableData: CSTTableDateProps[] = [
     residence: "123 Main St, City, Country",
   },
 ];
-const ChildrenServiceTable = () => {
+const ChildrenServiceTable = ({ search }: { search: string }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Number of items per page
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,7 +66,7 @@ const ChildrenServiceTable = () => {
     currentPage * itemsPerPage
   );
 
-  console.log("currentPage", currentPage);
+  console.log("In table", search);
   const goToPage = (page: number) => {
     return setCurrentPage((prevPage) => prevPage + page);
   };
@@ -152,61 +151,73 @@ const ChildrenServiceTable = () => {
 
             {/* Table Body */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {currentData.map((data) => (
-                <TableRow key={data.id}>
-                  <TableCell className="px-5 py-4 sm:px-6 text-start">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 overflow-hidden rounded-full">
-                        <img
-                          width={40}
-                          height={40}
-                          src={data.image}
-                          alt={data.image}
+              {currentData
+                .filter((data) => {
+                  if (search === "") {
+                    return data;
+                  } else if (
+                    data.firstName.toLowerCase().includes(search.toLowerCase())
+                  ) {
+                    console.log(data);
+
+                    return data;
+                  }
+                })
+                .map((data) => (
+                  <TableRow key={data.id}>
+                    <TableCell className="px-5 py-4 sm:px-6 text-start">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 overflow-hidden rounded-full">
+                          <img
+                            width={40}
+                            height={40}
+                            src={data.image}
+                            alt={data.image}
+                          />
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      {data.firstName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      {data.lastName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                      {data.dateOfBirth}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {data.age}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {data.fathersName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {data.mothersName}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {data.contact}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {data.residence}
+                    </TableCell>
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      <div className="flex items-center gap-2">
+                        <Link to="new">
+                          <BiEdit className="text-green-700 hover:text-green-300 cursor-pointer" />
+                        </Link>
+                        <BiTrash
+                          className="text-red-600 hover:text-red-400  cursor-pointer"
+                          onClick={() => setIsModalOpen(true)}
+                        />
+                        <FaUser
+                          className="cursor-pointer"
+                          onClick={() => setIsModalOpen(true)}
                         />
                       </div>
-                    </div>
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                    {data.firstName}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                    {data.lastName}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                    {data.dateOfBirth}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {data.age}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {data.fathersName}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {data.mothersName}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {data.contact}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    {data.residence}
-                  </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <Link to="new">
-                        <BiEdit className="text-green-700 hover:text-green-300 cursor-pointer" />
-                      </Link>
-                      <BiTrash
-                        className="text-red-600 hover:text-red-400  cursor-pointer"
-                        onClick={() => setIsModalOpen(true)}
-                      />
-                      <FaUser
-                        className="cursor-pointer"
-                        onClick={() => setIsModalOpen(true)}
-                      />
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </div>

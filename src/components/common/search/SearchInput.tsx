@@ -14,9 +14,7 @@ const SearchInput: React.FC<SearchInputProp> = ({
   const [searchTerm, setSearchTerm] = useState("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
-    if (searchTerm) {
-      onSearch(searchTerm);
-    }
+    onSearch(searchTerm);
   };
   return (
     <div className="relative">
