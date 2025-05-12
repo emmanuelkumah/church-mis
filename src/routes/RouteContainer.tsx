@@ -13,6 +13,7 @@ import {
   Login,
   Register,
   NewCSMember,
+  NewJYMember,
 } from "../pages";
 
 const routes = createBrowserRouter([
@@ -45,7 +46,16 @@ const routes = createBrowserRouter([
           },
           {
             path: "jy",
-            element: <JuniorYouth />,
+            children: [
+              {
+                index: true,
+                element: <JuniorYouth />,
+              },
+              {
+                path: "new",
+                element: <NewJYMember />,
+              },
+            ],
           },
           {
             path: "yaf",
