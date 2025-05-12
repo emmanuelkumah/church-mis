@@ -12,7 +12,20 @@ export type LoginFormData = {
   email: string;
   password: string;
 };
-export type SignUpFormFieldsProps = {
+
+export type CSFormData = {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  age: string;
+  fatherName: string;
+  motherName: string;
+  contact?: number;
+  residence: string;
+  image?: string;
+};
+
+export type FormFieldsProps<T extends Record<string, any>> = {
   type?: ValidInputFieldsType;
   placeholder?: string;
   id?: string;
@@ -27,13 +40,28 @@ export type SignUpFormFieldsProps = {
   required?: boolean;
   success?: boolean;
   hint?: string;
-  name: ValidFieldNames;
-  register: UseFormRegister<SignUpFormData>;
+  name: string;
+  register: UseFormRegister<T>;
   error?: FieldError;
   valueAsNumber?: boolean;
 };
 
-export type ValidInputFieldsType = "text" | "email" | "password" | "number";
+export type ChildrenServiceFieldProps = {
+  type?: ValidInputFieldsType;
+  placeholder?: string;
+  id?: string;
+  className?: string;
+  value?: string | number;
+  register: UseFormRegister<CSFormData>;
+  name: string;
+  error?: FieldError;
+};
+export type ValidInputFieldsType =
+  | "text"
+  | "email"
+  | "password"
+  | "number"
+  | "date";
 
 export type ValidFieldNames =
   | "firstName"
@@ -68,3 +96,53 @@ export const loginFormSchema: ZodType = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(1, "Password is required"),
 });
+
+export const csFormSchema: ZodType = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  dateOfBirth: z.string().min(1, "Date of birth is required"),
+  age: z.coerce.number().min(1, "Age is required"),
+  fatherName: z.string().min(1, "Father's name is required"),
+  motherName: z.string().min(1, "Mother's name is required"),
+  contact: z.string().optional(),
+  residence: z.string().min(1, "Residence is required"),
+});
+
+// Tables
+export type TableProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableHeaderProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableBodyProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export type TableRowProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+export type TableCellProps = {
+  children: React.ReactNode;
+  className?: string;
+  isHeader?: boolean;
+};
+
+//Modal Props
+
+export interface ModalProps {
+  className?: string;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  title?: string;
+  closeOnOverlayClick?: boolean;
+  closeOnEsc?: boolean;
+  showCloseButton?: boolean;
+  width?: string;
+  height?: string;
+}
