@@ -12,6 +12,7 @@ import { Paginate } from "../../common";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { FaUser } from "react-icons/fa6";
 import { Modal } from "../../common";
+import { Link } from "react-router";
 
 interface CSTTableDateProps {
   id: number;
@@ -191,12 +192,17 @@ const ChildrenServiceTable = () => {
                   </TableCell>
                   <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
                     <div className="flex items-center gap-2">
-                      <BiEdit className="text-green-700 hover:text-green-300 cursor-pointer" />
+                      <Link to="new">
+                        <BiEdit className="text-green-700 hover:text-green-300 cursor-pointer" />
+                      </Link>
                       <BiTrash
                         className="text-red-600 hover:text-red-400  cursor-pointer"
                         onClick={() => setIsModalOpen(true)}
                       />
-                      <FaUser className="cursor-pointer" />
+                      <FaUser
+                        className="cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
+                      />
                     </div>
                   </TableCell>
                 </TableRow>
