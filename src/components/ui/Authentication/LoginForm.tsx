@@ -4,6 +4,7 @@ import {
   Label,
   CardComponent,
   Button,
+  GoBack,
 } from "../../common";
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
@@ -34,7 +35,7 @@ const LoginForm = () => {
       </div>
       <div className="col-span-3">
         <Link to={"/"} className="flex items-center p-4">
-          <Button text="Go Back" />
+          <GoBack />
         </Link>
 
         <div className="grid place-items-center min-h-screen">

@@ -3,7 +3,7 @@ import LayoutWrapper from "../layout/LayoutWrapper";
 import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
 import Landing from "../pages/Landing/Landing";
-import Authentication from "../pages/Auth/Authentication";
+import { Error } from "../components/common";
 import HomeLayout from "../layout/HomeLayout";
 import {
   ChildrenService,
@@ -22,6 +22,7 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -32,9 +33,8 @@ const routes = createBrowserRouter([
       { path: "login", element: <Login /> },
     ],
   },
-
   {
-    path: "/app",
+    path: "app",
     element: <AppLayout />,
     children: [
       { index: true, element: <h1>Dashboard page</h1> },
@@ -96,7 +96,8 @@ const routes = createBrowserRouter([
       { path: "attendance", element: <h1>Attendance page</h1> },
     ],
   },
-  { path: "*", element: <h1>Page Not Found</h1> },
+
+  // { path: "*", element: <h1>Page Not Found</h1> },
 ]);
 const RouteContainer = () => {
   return (

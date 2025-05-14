@@ -1,10 +1,4 @@
-import {
-  Footer,
-  Group,
-  Hero,
-  Main,
-  VisionMisson,
-} from "../../components/ui/Landing";
+import { Group, Hero, Main, VisionMisson } from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
 import { useScrollAnchor } from "../../hooks/useScrollAnchor";
 
@@ -30,7 +24,6 @@ const Landing = () => {
             <Group />
           </section>
         </div>
-        <Footer />
       </LayoutWrapper>
     </>
   );
