@@ -1,0 +1,110 @@
+import { useState } from "react";
+import { CiMenuBurger } from "react-icons/ci";
+import { RiCloseLargeFill } from "react-icons/ri";
+
+import { Link } from "react-router";
+import PCGLogo from "../../../assets/images/pcglogo.png";
+
+const NavBar = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const toggleNavMenus = () => {
+    setOpenMenu((prevVal) => !prevVal);
+  };
+  return (
+    <nav className="bg-white sticky border-b-1 border-gray-300 shadow-xs md:px-[10%]  top-0 z-50">
+      <div className="flex justify-between items-center h-16 px-4">
+        {/* Logo and primary nav */}
+        <div>
+          <img src={PCGLogo} width={100} alt="PCG logo" />
+        </div>
+
+        {/* Primary nav and cta hidden  on mobile */}
+        <div className="hidden md:flex md:gap-32 items-center">
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="#home"
+              className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
+            >
+              Home
+            </Link>
+            <Link
+              to="#about"
+              className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
+            >
+              About
+            </Link>
+            <Link
+              to="#VisionMission"
+              className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
+            >
+              Vision & Mission
+            </Link>
+            <Link
+              to="#groups"
+              className="hover:border-b-4 border-brand-500 transition-all duration-300 ease-in-out"
+            >
+              Groups
+            </Link>
+          </div>
+          <div>
+            <Link to="/login">
+              <button className="w-full bg-brand-500 rounded-lg px-4 py-2 text-white hover:bg-brand-400 cursor-pointer">
+                Login
+              </button>
+            </Link>
+          </div>
+        </div>
+        {/* mobile menu button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={toggleNavMenus}
+            className="cursor-pointer border border-brand-400 rounded-lg p-2"
+          >
+            {openMenu ? <RiCloseLargeFill /> : <CiMenuBurger />}
+          </button>
+        </div>
+      </div>
+      {/* mobile menu */}
+      <div
+        className={`md:hidden absolute top-full left-0 right-0 bg-brand-100 shadow-xl ${
+          openMenu ? "block" : "hidden"
+        }`}
+      >
+        <div className="flex flex-col space-y-4 px-4">
+          <Link
+            to="#home"
+            className="hover:text-brand-500 transition-all duration-300 ease-in-out mt-4"
+          >
+            Home
+          </Link>
+          <Link
+            to="#about"
+            className="hover:text-brand-500 transition-all duration-300 ease-in-out"
+          >
+            About
+          </Link>
+          <Link
+            to="#VisionMission"
+            className="hover:text-brand-500 transition-all duration-300 ease-in-out"
+          >
+            Vision & Mission
+          </Link>
+          <Link
+            to="#groups"
+            className="hover:text-brand-500 transition-all duration-300 ease-in-out"
+          >
+            Groups
+          </Link>
+        </div>
+        <div className="mt-4">
+          <button className="w-full bg-brand-500 rounded-xs px-4 py-2 text-white hover:bg-brand-400 cursor-pointer">
+            Login
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default NavBar;

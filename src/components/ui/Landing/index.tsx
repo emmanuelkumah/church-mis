@@ -1,0 +1,4 @@
+export { default as Hero } from "./Hero";
+export { default as Main } from "./Main";
+export { default as Group } from "./Group";
+export { default as VisionMisson } from "./VisionMisson";
