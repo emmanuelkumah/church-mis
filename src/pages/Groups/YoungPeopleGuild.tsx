@@ -29,7 +29,7 @@ const YoungPeopleGuild = () => {
           onSearch={handleSearchTerm}
         />
       </div>
-      YPG Table
+      <YPGTable />
     </div>
   );
 };
