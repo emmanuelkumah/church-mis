@@ -3,6 +3,7 @@ export { default as Authentication } from "./Auth/Authentication";
 export { default as App } from "./Main/App";
 export { default as ChildrenService } from "./Groups/ChildrenService";
 export { default as JuniorYouth } from "./Groups/JuniorYouth";
+export { default as YoungPeopleGuild } from "./Groups/YoungPeopleGuild";
 export { default as YAF } from "./Groups/YAF";
 export { default as WomenFellowship } from "./Groups/WomenFellowship";
 export { default as MensFellowship } from "./Groups/MensFellowship";

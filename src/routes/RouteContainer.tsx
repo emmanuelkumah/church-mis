@@ -7,6 +7,7 @@ import Authentication from "../pages/Auth/Authentication";
 import {
   ChildrenService,
   JuniorYouth,
+  YoungPeopleGuild,
   YAF,
   WomenFellowship,
   MensFellowship,
@@ -54,6 +55,19 @@ const routes = createBrowserRouter([
               {
                 path: "new",
                 element: <NewJYMember />,
+              },
+            ],
+          },
+          {
+            path: "ypg",
+            children: [
+              {
+                index: true,
+                element: <YoungPeopleGuild />,
+              },
+              {
+                path: "new",
+                element: "YPG Form",
               },
             ],
           },

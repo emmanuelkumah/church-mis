@@ -24,6 +24,8 @@ export const navItems: NavItem[] = [
     subMenu: [
       { title: "Children Service", path: "groups/cs" },
       { title: "Junior Youth", path: "groups/jy" },
+      { title: "Young Peoples Guild", path: "groups/ypg" },
+
       { title: "Young Adult Fellowship", path: "groups/yaf" },
       { title: "Mens Fellowship", path: "groups/mens" },
       { title: "Womens Fellowship", path: "groups/womens" },
