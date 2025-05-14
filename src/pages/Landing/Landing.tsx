@@ -3,7 +3,6 @@ import {
   Group,
   Hero,
   Main,
-  Navbar,
   VisionMisson,
 } from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
@@ -17,7 +16,6 @@ const Landing = () => {
   return (
     <>
       <LayoutWrapper>
-        <Navbar />
         <div className="container mx-auto">
           <section id="home">
             <Hero />

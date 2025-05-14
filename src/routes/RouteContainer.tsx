@@ -4,6 +4,7 @@ import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
 import Landing from "../pages/Landing/Landing";
 import Authentication from "../pages/Auth/Authentication";
+import HomeLayout from "../layout/HomeLayout";
 import {
   ChildrenService,
   JuniorYouth,
@@ -20,11 +21,17 @@ import {
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
-  },
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
 
-  { path: "/signup", element: <Register /> },
-  { path: "/login", element: <Login /> },
+      { path: "signup", element: <Register /> },
+      { path: "login", element: <Login /> },
+    ],
+  },
 
   {
     path: "/app",
