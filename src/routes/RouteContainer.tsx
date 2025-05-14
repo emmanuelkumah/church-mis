@@ -3,29 +3,38 @@ import LayoutWrapper from "../layout/LayoutWrapper";
 import AppLayout from "../layout/AppLayout";
 import SidebarProvider from "../context/SidebarProvider";
 import Landing from "../pages/Landing/Landing";
-import Authentication from "../pages/Auth/Authentication";
+import { Error } from "../components/common";
+import HomeLayout from "../layout/HomeLayout";
 import {
   ChildrenService,
   JuniorYouth,
+  YoungPeopleGuild,
   YAF,
   WomenFellowship,
   MensFellowship,
   Login,
   Register,
   NewCSMember,
+  NewJYMember,
 } from "../pages";
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
+    element: <HomeLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+
+      { path: "signup", element: <Register /> },
+      { path: "login", element: <Login /> },
+    ],
   },
-
-  { path: "/signup", element: <Register /> },
-  { path: "/login", element: <Login /> },
-
   {
-    path: "/app",
+    path: "app",
     element: <AppLayout />,
     children: [
       { index: true, element: <h1>Dashboard page</h1> },
@@ -45,7 +54,29 @@ const routes = createBrowserRouter([
           },
           {
             path: "jy",
-            element: <JuniorYouth />,
+            children: [
+              {
+                index: true,
+                element: <JuniorYouth />,
+              },
+              {
+                path: "new",
+                element: <NewJYMember />,
+              },
+            ],
+          },
+          {
+            path: "ypg",
+            children: [
+              {
+                index: true,
+                element: <YoungPeopleGuild />,
+              },
+              {
+                path: "new",
+                element: "YPG Form",
+              },
+            ],
           },
           {
             path: "yaf",
@@ -65,7 +96,8 @@ const routes = createBrowserRouter([
       { path: "attendance", element: <h1>Attendance page</h1> },
     ],
   },
-  { path: "*", element: <h1>Page Not Found</h1> },
+
+  // { path: "*", element: <h1>Page Not Found</h1> },
 ]);
 const RouteContainer = () => {
   return (

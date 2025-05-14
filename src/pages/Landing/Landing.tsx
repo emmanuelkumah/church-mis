@@ -1,11 +1,4 @@
-import {
-  Footer,
-  Group,
-  Hero,
-  Main,
-  Navbar,
-  VisionMisson,
-} from "../../components/ui/Landing";
+import { Group, Hero, Main, VisionMisson } from "../../components/ui/Landing";
 import LayoutWrapper from "../../layout/LayoutWrapper";
 import { useScrollAnchor } from "../../hooks/useScrollAnchor";
 
@@ -17,7 +10,6 @@ const Landing = () => {
   return (
     <>
       <LayoutWrapper>
-        <Navbar />
         <div className="container mx-auto">
           <section id="home">
             <Hero />
@@ -32,7 +24,6 @@ const Landing = () => {
             <Group />
           </section>
         </div>
-        <Footer />
       </LayoutWrapper>
     </>
   );

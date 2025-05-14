@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { JYTable } from "../../components/ui/Table";
+import { YPGTable } from "../../components/ui/Table";
 import { Button, SearchInput } from "../../components/common";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { Link } from "react-router";
 
-const JuniorYouth = () => {
+const YoungPeopleGuild = () => {
   const [searchInput, setSearchInput] = useState("");
   const handleSearchTerm = (searchTerm: string) => {
     setSearchInput(searchTerm);
@@ -29,8 +29,8 @@ const JuniorYouth = () => {
           onSearch={handleSearchTerm}
         />
       </div>
-      <JYTable search={searchInput} />
+      <YPGTable />
     </div>
   );
 };
-export default JuniorYouth;
+export default YoungPeopleGuild;
