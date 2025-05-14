@@ -6,5 +6,5 @@ res.send('Hello world')
 })
 
 app.listen(5100, ()=>{
-  console.log('server is running...')  
+  console.log('server is running on port 5100...')  
 })
