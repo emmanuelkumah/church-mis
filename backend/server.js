@@ -84,6 +84,30 @@ app.get("/api/v1/cs-member/:id", (req, res) => {
     },
   });
 });
+//update a cs member
+app.patch("/api/v1/cs-member/:id", (req, res) => {
+  if (!req.body) {
+    res.status(400).json({
+      status: "fail",
+      message: "Please provide data to update",
+    });
+  }
+  const { id } = req.params;
+  const csMember = csMembers.find((member) => member.id === id);
+  if (!csMember) {
+    res.status(404).json({
+      status: "fail",
+      message: `No cs member found with ID ${id}`,
+    });
+  }
+  const updatedMember = { ...csMember, ...req.body };
+  res.status(200).json({
+    status: "success",
+    data: {
+      csMember: updatedMember,
+    },
+  });
+});
 app.post("/", (req, res) => {
   console.log(req);
   res.json({ message: "Data received", data: req.body });
