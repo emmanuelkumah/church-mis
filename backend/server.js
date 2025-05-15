@@ -108,6 +108,22 @@ app.patch("/api/v1/cs-member/:id", (req, res) => {
     },
   });
 });
+//delete a cs member
+app.delete("/api/v1/cs-member/:id", (req, res) => {
+  const { id } = req.params;
+  const csMemberIndex = csMembers.findIndex((member) => member.id === id);
+  if (csMemberIndex === -1) {
+    res.status(404).json({
+      status: "fail",
+      message: `No cs member found with ID ${id}`,
+    });
+  }
+  csMembers.splice(csMemberIndex, 1);
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});
 app.post("/", (req, res) => {
   console.log(req);
   res.json({ message: "Data received", data: req.body });
@@ -116,6 +132,13 @@ app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    status: "error",
+    message: "Something went wrong",
+  });
+});
 const port = process.env.PORT || 5100;
 app.listen(port, () => {
   console.log(`server is running on port ${port}...`);
