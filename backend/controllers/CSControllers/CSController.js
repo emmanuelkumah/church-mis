@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import CSModel from "../../models/CSModel.js";
 //get all cs members
 const csMembers = [
   {
@@ -42,18 +43,19 @@ export const getAllCSMembers = async (req, res) => {
 //create a new cs member
 export const createCSMember = async (req, res) => {
   const { firstName, lastName, dateOfBirth } = req.body;
+  const csMember = await CSModel.create(req.body);
   if (!firstName || !lastName || !dateOfBirth) {
     return res.status(400).json({
       status: "fail",
       message: "Please provide firstName, lastName and dateOfBirth",
     });
   }
-  const newMember = { id: nanoid(), ...req.body };
-  csMembers.push(newMember);
+  // const newMember = { id: nanoid(), ...req.body };
+  // csMembers.push(newMember);
   res.status(201).json({
     status: "success",
     data: {
-      csMember: newMember,
+      csMember,
     },
   });
 };
