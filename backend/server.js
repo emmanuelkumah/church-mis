@@ -3,7 +3,6 @@ dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
-
 //router
 import csRoutes from "./routes/csRoutes.js";
 const app = express();

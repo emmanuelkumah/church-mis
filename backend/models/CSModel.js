@@ -6,6 +6,10 @@ const CSSchema = new mongoose.Schema(
     lastName: String,
     dateOfBirth: String,
     age: String,
+    gender: {
+      type: String,
+      enum: ["male", "female"],
+    },
     fatherName: String,
     motherName: String,
     contact: String,
