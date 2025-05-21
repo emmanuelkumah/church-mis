@@ -18,11 +18,11 @@ const CSSchema = new mongoose.Schema(
       type: String,
       enum: ["male", "female"],
     },
-    fatherName: {
+    fathersName: {
       type: String,
       required: true,
     },
-    motherName: {
+    mothersName: {
       type: String,
       required: true,
     },
