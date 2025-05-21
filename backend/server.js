@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import morgan from "morgan";
+import mongoose from "mongoose";
 
 //router
 import csRoutes from "./routes/csRoutes.js";
@@ -26,6 +27,13 @@ app.use((err, req, res, next) => {
   });
 });
 const port = process.env.PORT || 5100;
-app.listen(port, () => {
-  console.log(`server is running on port ${port}...`);
-});
+
+try {
+  await mongoose.connect(process.env.MONGODB_URI);
+  app.listen(port, () => {
+    console.log(`server is running on port ${port}...`);
+  });
+} catch (error) {
+  console.error("Error connecting to MongoDB:", error);
+  process.exit(1); // Exit the process with failure
+}
