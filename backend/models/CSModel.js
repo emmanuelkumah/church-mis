@@ -2,16 +2,30 @@ import mongoose from "mongoose";
 
 const CSSchema = new mongoose.Schema(
   {
-    firstName: String,
-    lastName: String,
-    dateOfBirth: String,
-    age: String,
+    firstName: { type: String, required: true },
+    middleName: String,
+    lastName: { type: String, required: true },
+    dateOfBirth: {
+      type: Date,
+      required: true,
+    },
+    age: {
+      type: Number,
+      min: 0,
+      max: 14,
+    },
     gender: {
       type: String,
       enum: ["male", "female"],
     },
-    fatherName: String,
-    motherName: String,
+    fatherName: {
+      type: String,
+      required: true,
+    },
+    motherName: {
+      type: String,
+      required: true,
+    },
     contact: String,
     residence: String,
     image: String,
