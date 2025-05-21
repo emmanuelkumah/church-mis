@@ -89,6 +89,7 @@ export const updateCSMember = async (req, res) => {
       status: "fail",
       message: `No cs member found with ID ${id}`,
     });
+    return;
   }
   const updatedMember = { ...csMember, ...req.body };
   res.status(200).json({
@@ -109,8 +110,5 @@ export const deleteCSMember = async (req, res) => {
     });
   }
   csMembers.splice(csMemberIndex, 1);
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
+  res.status(204).send();
 };
