@@ -42,16 +42,15 @@ export const getAllCSMembers = async (req, res) => {
 };
 //create a new cs member
 export const createCSMember = async (req, res) => {
-  const { firstName, lastName, dateOfBirth } = req.body;
+  const { firstName, lastName } = req.body;
   const csMember = await CSModel.create(req.body);
-  if (!firstName || !lastName || !dateOfBirth) {
+  if (!firstName || !lastName) {
     return res.status(400).json({
       status: "fail",
-      message: "Please provide firstName, lastName and dateOfBirth",
+      message: "Please provide firstName and lastName",
     });
   }
-  // const newMember = { id: nanoid(), ...req.body };
-  // csMembers.push(newMember);
+
   res.status(201).json({
     status: "success",
     data: {

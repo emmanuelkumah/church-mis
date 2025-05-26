@@ -1,3 +1,4 @@
+import "express-async-errors";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -13,10 +14,6 @@ if (process.env.NODE_ENV === "development") {
 
 //middleware to handle routing
 app.use("/api/v1/cs", csRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
