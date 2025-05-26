@@ -1,39 +1,9 @@
-import { nanoid } from "nanoid";
 import CSModel from "../../models/CSModel.js";
-//get all cs members
-const csMembers = [
-  {
-    id: nanoid(),
-    firstName: "Corty",
-    lastName: "Dixson",
-    dateOfBirth: "9/28/2021",
-    gender: "Male",
-    fathersName: "Corty Dixson",
-    mothersName: "Corty Dixson",
-    residence: "Room 1887",
-    contact: "602-623-5247",
-    image: "http://dummyimage.com/186x100.png/ff4444/ffffff",
-    age: 10,
-  },
-  {
-    id: nanoid(),
-    firstName: "Valencia",
-    lastName: "Ride",
-    dateOfBirth: "12/23/2019",
-    gender: "Female",
-    fathersName: "Valencia Ride",
-    mothersName: "Valencia Ride",
-    residence: "Apt 234",
-    contact: "529-649-3079",
-    image: "http://dummyimage.com/240x100.png/ff4444/ffffff",
-    age: 4,
-  },
-];
-
+import { StatusCodes } from "http-status-codes";
 //get all cs members
 export const getAllCSMembers = async (req, res) => {
   const csMembers = await CSModel.find({});
-  res.status(200).json({
+  res.status(StatusCodes.OK).json({
     status: "success",
     results: csMembers.length,
     data: {
@@ -52,7 +22,7 @@ export const createCSMember = async (req, res) => {
     });
   }
 
-  res.status(201).json({
+  res.status(StatusCodes.CREATED).json({
     status: "success",
     data: {
       csMember,
@@ -69,7 +39,7 @@ export const getCSMember = async (req, res) => {
       message: "No cs member found with that ID",
     });
   }
-  res.status(200).json({
+  res.status(StatusCodes.OK).json({
     status: "success",
     data: {
       csMember,
@@ -89,7 +59,7 @@ export const updateCSMember = async (req, res) => {
     });
     return;
   }
-  res.status(200).json({
+  res.status(StatusCodes.OK).json({
     status: "success",
     data: {
       csMember: updatedCSMember,
@@ -107,5 +77,5 @@ export const deleteCSMember = async (req, res) => {
     });
   }
 
-  res.status(200).json({ csMember: deleteCSMember });
+  res.status(StatusCodes.OK).json({ csMember: deleteCSMember });
 };
