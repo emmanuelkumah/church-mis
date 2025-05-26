@@ -32,6 +32,7 @@ const csMembers = [
 
 //get all cs members
 export const getAllCSMembers = async (req, res) => {
+  const csMembers = await CSModel.find({});
   res.status(200).json({
     status: "success",
     results: csMembers.length,
@@ -42,16 +43,15 @@ export const getAllCSMembers = async (req, res) => {
 };
 //create a new cs member
 export const createCSMember = async (req, res) => {
-  const { firstName, lastName, dateOfBirth } = req.body;
+  const { firstName, lastName } = req.body;
   const csMember = await CSModel.create(req.body);
-  if (!firstName || !lastName || !dateOfBirth) {
+  if (!firstName || !lastName) {
     return res.status(400).json({
       status: "fail",
-      message: "Please provide firstName, lastName and dateOfBirth",
+      message: "Please provide firstName and lastName",
     });
   }
-  // const newMember = { id: nanoid(), ...req.body };
-  // csMembers.push(newMember);
+
   res.status(201).json({
     status: "success",
     data: {
@@ -62,7 +62,7 @@ export const createCSMember = async (req, res) => {
 //get a single cs member
 export const getCSMember = async (req, res) => {
   const { id } = req.params;
-  const csMember = csMembers.find((member) => member.id === id);
+  const csMember = await CSModel.findById(id);
   if (!csMember) {
     res.status(404).json({
       status: "fail",
@@ -78,39 +78,34 @@ export const getCSMember = async (req, res) => {
 };
 //update a cs member
 export const updateCSMember = async (req, res) => {
-  if (!req.body) {
-    res.status(400).json({
-      status: "fail",
-      message: "Please provide data to update",
-    });
-  }
   const { id } = req.params;
-  const csMember = csMembers.find((member) => member.id === id);
-  if (!csMember) {
+  const updatedCSMember = await CSModel.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+  if (!updatedCSMember) {
     res.status(404).json({
       status: "fail",
       message: `No cs member found with ID ${id}`,
     });
     return;
   }
-  const updatedMember = { ...csMember, ...req.body };
   res.status(200).json({
     status: "success",
     data: {
-      csMember: updatedMember,
+      csMember: updatedCSMember,
     },
   });
 };
 //delete a cs member
 export const deleteCSMember = async (req, res) => {
   const { id } = req.params;
-  const csMemberIndex = csMembers.findIndex((member) => member.id === id);
-  if (csMemberIndex === -1) {
-    res.status(404).json({
+  const deleteCSMember = await CSModel.findByIdAndDelete(id);
+  if (!deleteCSMember) {
+    return res.status(404).json({
       status: "fail",
-      message: `No cs member found with ID ${id}`,
+      message: "No cs member found with that ID",
     });
   }
-  csMembers.splice(csMemberIndex, 1);
-  res.status(204).send();
+
+  res.status(200).json({ csMember: deleteCSMember });
 };
