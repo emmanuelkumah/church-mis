@@ -32,6 +32,7 @@ const csMembers = [
 
 //get all cs members
 export const getAllCSMembers = async (req, res) => {
+  const csMembers = await CSModel.find({});
   res.status(200).json({
     status: "success",
     results: csMembers.length,
@@ -61,7 +62,7 @@ export const createCSMember = async (req, res) => {
 //get a single cs member
 export const getCSMember = async (req, res) => {
   const { id } = req.params;
-  const csMember = csMembers.find((member) => member.id === id);
+  const csMember = await CSModel.findById(id);
   if (!csMember) {
     res.status(404).json({
       status: "fail",
