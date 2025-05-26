@@ -1,5 +1,6 @@
 import CSModel from "../../models/CSModel.js";
 import { StatusCodes } from "http-status-codes";
+import { NotFoundError } from "../../errors/customError.js";
 //get all cs members
 export const getAllCSMembers = async (req, res) => {
   const csMembers = await CSModel.find({});
@@ -33,12 +34,7 @@ export const createCSMember = async (req, res) => {
 export const getCSMember = async (req, res) => {
   const { id } = req.params;
   const csMember = await CSModel.findById(id);
-  if (!csMember) {
-    res.status(404).json({
-      status: "fail",
-      message: "No cs member found with that ID",
-    });
-  }
+  if (!csMember) throw new NotFoundError(`No cs member found with ID ${id}`);
   res.status(StatusCodes.OK).json({
     status: "success",
     data: {
@@ -52,13 +48,8 @@ export const updateCSMember = async (req, res) => {
   const updatedCSMember = await CSModel.findByIdAndUpdate(id, req.body, {
     new: true,
   });
-  if (!updatedCSMember) {
-    res.status(404).json({
-      status: "fail",
-      message: `No cs member found with ID ${id}`,
-    });
-    return;
-  }
+  if (!updatedCSMember)
+    throw new NotFoundError(`No cs member found with ID ${id}`);
   res.status(StatusCodes.OK).json({
     status: "success",
     data: {
@@ -70,12 +61,8 @@ export const updateCSMember = async (req, res) => {
 export const deleteCSMember = async (req, res) => {
   const { id } = req.params;
   const deleteCSMember = await CSModel.findByIdAndDelete(id);
-  if (!deleteCSMember) {
-    return res.status(404).json({
-      status: "fail",
-      message: "No cs member found with that ID",
-    });
-  }
+  if (!deleteCSMember)
+    throw new NotFoundError(`No cs member found with ID ${id}`);
 
   res.status(StatusCodes.OK).json({ csMember: deleteCSMember });
 };
