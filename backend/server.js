@@ -5,7 +5,6 @@ dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import { validateTest } from "./middleware/validationMiddleware.js";
 //router
 import csRoutes from "./routes/csRoutes.js";
 
@@ -18,17 +17,6 @@ if (process.env.NODE_ENV === "development") {
 //middleware to handle routing
 app.use("/api/v1/cs", csRoutes);
 
-app.post(
-  "/api/v1/test",
-  validateTest, // validation middleware
-  (req, res) => {
-    const { name } = req.body;
-    res.status(200).json({
-      status: "success",
-      message: `Hello ${name}, this is a test route!`,
-    });
-  }
-);
 //middleware for error handling
 app.use(errorHandlerMiddleware);
 
