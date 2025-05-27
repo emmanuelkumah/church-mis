@@ -1,5 +1,5 @@
-import { body, validationResult } from "express-validator";
-
+import { body, param, validationResult } from "express-validator";
+import mongoose from "mongoose";
 export const withValidationErrors = (validateValues) => {
   return [
     validateValues,
@@ -48,4 +48,12 @@ export const validateCSMember = withValidationErrors([
   body("residence").notEmpty().withMessage("Residence is required"),
   body("image").optional().isURL().withMessage("Image must be a valid URL"),
   body("gender").isIn(["gender", "male"]).withMessage("invalid gender"),
+]);
+
+export const validateIdParams = withValidationErrors([
+  param("id")
+    .custom((value) => {
+      return mongoose.Types.ObjectId.isValid(value);
+    })
+    .withMessage("Invalid ID format"),
 ]);
