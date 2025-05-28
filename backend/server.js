@@ -1,4 +1,5 @@
 import "express-async-errors";
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -6,6 +7,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 //router
 import csRoutes from "./routes/csRoutes.js";
+
 const app = express();
 app.use(express.json());
 if (process.env.NODE_ENV === "development") {
@@ -15,15 +17,12 @@ if (process.env.NODE_ENV === "development") {
 //middleware to handle routing
 app.use("/api/v1/cs", csRoutes);
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    status: "error",
-    message: "Something went wrong",
-  });
-});
+//middleware for error handling
+app.use(errorHandlerMiddleware);
+
 const port = process.env.PORT || 5100;
 
+//connect to MongoDB and start the server
 try {
   await mongoose.connect(process.env.MONGODB_URI);
   app.listen(port, () => {

@@ -8,12 +8,16 @@ import {
   updateCSMember,
   deleteCSMember,
 } from "../controllers/CSControllers/CSController.js";
+import {
+  validateCSMember,
+  validateIdParams,
+} from "../middleware/validationMiddleware.js";
 
-router.route("/").get(getAllCSMembers).post(createCSMember);
+router.route("/").get(getAllCSMembers).post(validateCSMember, createCSMember);
 router
   .route("/:id")
-  .get(getCSMember)
-  .patch(updateCSMember)
-  .delete(deleteCSMember);
+  .get(validateIdParams, getCSMember)
+  .patch(validateIdParams, validateCSMember, updateCSMember)
+  .delete(validateIdParams, deleteCSMember);
 
 export default router;
