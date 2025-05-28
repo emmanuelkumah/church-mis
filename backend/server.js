@@ -7,6 +7,7 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 //router
 import csRoutes from "./routes/csRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ if (process.env.NODE_ENV === "development") {
 
 //middleware to handle routing
 app.use("/api/v1/cs", csRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 //middleware for error handling
 app.use(errorHandlerMiddleware);
