@@ -78,3 +78,13 @@ export const validateUserRegistration = withValidationErrors([
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long"),
 ]);
+//validate login
+export const validateUserLogin = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Please provide a valid email"),
+
+  body("password").notEmpty().withMessage("Password is required"),
+]);
