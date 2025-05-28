@@ -1,5 +1,7 @@
 import { body, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
+import { BadRequestError } from "../errors/customError.js";
+import UserModel from "../models/UserModel.js";
 export const withValidationErrors = (validateValues) => {
   return [
     validateValues,
@@ -56,4 +58,23 @@ export const validateIdParams = withValidationErrors([
       return mongoose.Types.ObjectId.isValid(value);
     })
     .withMessage("Invalid ID format"),
+]);
+//validate user registration
+export const validateUserRegistration = withValidationErrors([
+  body("firstName").notEmpty().withMessage("First name is required"),
+  body("lastName").notEmpty().withMessage("Last name is required"),
+
+  body("email")
+    .isEmail()
+    .withMessage("Please provide a valid email address")
+    .custom(async (email) => {
+      const user = await UserModel.findOne({ email });
+      if (user) {
+        throw new BadRequestError("Email already in use");
+      }
+    }),
+
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters long"),
 ]);
