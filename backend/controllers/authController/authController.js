@@ -33,5 +33,9 @@ export const login = async (req, res) => {
   );
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
   const token = createToken({ userId: user._id, role: user.role });
-  res.json({ token });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production", // Set secure flag in production
+  });
+  res.status(StatusCodes.OK).json("User logged in successfully");
 };
