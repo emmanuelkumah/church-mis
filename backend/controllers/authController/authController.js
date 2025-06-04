@@ -32,9 +32,14 @@ export const login = async (req, res) => {
     user.password
   );
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
+
   const token = createToken({ userId: user._id, role: user.role });
+
+  const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+  // Set the token in a cookie
   res.cookie("token", token, {
     httpOnly: true,
+    expires: new Date(Date.now() + oneDay), // Cookie expires in 1 day
     secure: process.env.NODE_ENV === "production", // Set secure flag in production
   });
   res.status(StatusCodes.OK).json("User logged in successfully");
