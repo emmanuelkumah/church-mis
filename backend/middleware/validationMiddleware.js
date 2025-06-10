@@ -1,7 +1,12 @@
 import { body, param, validationResult } from "express-validator";
 import mongoose from "mongoose";
-import { BadRequestError } from "../errors/customError.js";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../errors/customError.js";
 import UserModel from "../models/UserModel.js";
+import CSModel from "../models/CSModel.js";
 export const withValidationErrors = (validateValues) => {
   return [
     validateValues,
@@ -9,7 +14,13 @@ export const withValidationErrors = (validateValues) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
-        return res.status(400).json({ errors: errorMessages });
+        if (errorMessages.startsWith("no member with id")) {
+          throw new NotFoundError(errorMessages);
+        }
+        if (errorMessages.startsWith("not authorized")) {
+          throw new UnauthorizedError("not authorized to access this route");
+        }
+        throw new BadRequestError(errorMessages);
       }
       next();
     },
@@ -58,6 +69,18 @@ export const validateIdParams = withValidationErrors([
       return mongoose.Types.ObjectId.isValid(value);
     })
     .withMessage("Invalid ID format"),
+]);
+export const validateIdParam = withValidationErrors([
+  param("id").custom(async (value, { req }) => {
+    const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidMongoId) throw new BadRequestError("invalid MongoDB id");
+    const csMember = await CSModel.findById(value);
+    if (!csMember) throw new NotFoundError(`no member with id ${value}`);
+    const isAdmin = req.user.role === "admin";
+    const isOwner = req.user.userId === csMember.createdBy.toString();
+    if (!isAdmin && !isOwner)
+      throw UnauthorizedError("not authorized to access this route");
+  }),
 ]);
 //validate user registration
 export const validateUserRegistration = withValidationErrors([

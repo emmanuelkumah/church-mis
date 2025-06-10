@@ -29,13 +29,12 @@ const CSSchema = new mongoose.Schema(
     contact: String,
     residence: String,
     image: String,
-  },
-  {
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
     },
   },
+
   {
     timestamps: true,
   }

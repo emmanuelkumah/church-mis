@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { hashPassword, comparePassword } from "../../utils/passwordUtils.js";
 import { UnauthenticatedError } from "../../errors/customError.js";
 import { createToken } from "../../utils/tokenUtils.js";
+
 // Register and login controllers for user authentication
 export const register = async (req, res) => {
   const isFirstAccount = (await UserModel.countDocuments({})) === 0;
@@ -43,4 +44,14 @@ export const login = async (req, res) => {
     secure: process.env.NODE_ENV === "production", // Set secure flag in production
   });
   res.status(StatusCodes.OK).json("User logged in successfully");
+};
+
+//logout user
+export const logout = (req, res) => {
+  res.cookie("token", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000), // Set the cookie to expire immediately
+    secure: process.env.NODE_ENV === "production", // Set secure flag in production
+  });
+  res.status(StatusCodes.OK).json({ msg: "User logged out successfully" });
 };
