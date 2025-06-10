@@ -1,21 +1,27 @@
 import "express-async-errors";
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
+import { authenticateUser } from "./middleware/authMiddleware.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 //router
 import csRoutes from "./routes/csRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
+//middleware for logging requests in development mode
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
 //middleware to handle routing
-app.use("/api/v1/cs", csRoutes);
+app.use("/api/v1/cs", authenticateUser, csRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 //middleware for error handling
 app.use(errorHandlerMiddleware);

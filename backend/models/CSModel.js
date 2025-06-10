@@ -31,6 +31,12 @@ const CSSchema = new mongoose.Schema(
     image: String,
   },
   {
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  {
     timestamps: true,
   }
 );
