@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { NotFoundError } from "../../errors/customError.js";
 //get all cs members
 export const getAllCSMembers = async (req, res) => {
-  const csMembers = await CSModel.find({});
+  const csMembers = await CSModel.find({ createdBy: req.user.userId });
   res.status(StatusCodes.OK).json({
     status: "success",
     results: csMembers.length,
@@ -14,21 +14,13 @@ export const getAllCSMembers = async (req, res) => {
 };
 //create a new cs member
 export const createCSMember = async (req, res) => {
-  const { firstName, lastName } = req.body;
-  const csMember = await CSModel.create(req.body);
-  if (!firstName || !lastName) {
-    return res.status(400).json({
-      status: "fail",
-      message: "Please provide firstName and lastName",
-    });
-  }
+  console.log(req.user);
+  req.body.createdBy = req.user.userId;
 
-  res.status(StatusCodes.CREATED).json({
-    status: "success",
-    data: {
-      csMember,
-    },
-  });
+  // Set the createdBy field to the userId from the request
+  const csMember = await CSModel.create(req.body);
+
+  res.status(StatusCodes.CREATED).json({ csMember });
 };
 //get a single cs member
 export const getCSMember = async (req, res) => {
