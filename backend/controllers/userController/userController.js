@@ -1,5 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import UserModel from "../../models/UserModel.js";
+import CSModel from "../../models/CSModel.js";
 
 export const getCurrentUser = async (req, res) => {
   const user = await UserModel.findOne({ _id: req.user.userId });
@@ -15,5 +16,7 @@ export const updateUser = async (req, res) => {
 };
 
 export const getApplicationStats = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: "get application stats" });
+  const totalUsers = await UserModel.countDocuments({});
+  const totalChildrenServiceMembers = await CSModel.countDocuments({});
+  res.status(StatusCodes.OK).json({ totalUsers, totalChildrenServiceMembers });
 };
