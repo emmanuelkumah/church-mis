@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 //router
 import csRoutes from "./routes/csRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === "development") {
 //middleware to handle routing
 app.use("/api/v1/cs", authenticateUser, csRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", authenticateUser, userRoutes);
 
 //middleware for error handling
 app.use(errorHandlerMiddleware);

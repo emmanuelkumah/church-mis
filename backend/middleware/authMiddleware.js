@@ -1,4 +1,7 @@
-import { UnauthenticatedError } from "../errors/customError.js";
+import {
+  UnauthenticatedError,
+  UnauthorizedError,
+} from "../errors/customError.js";
 import { verifyToken } from "../utils/tokenUtils.js"; // Function to verify the token
 // This middleware would typically check for a valid token in the request headers
 
@@ -12,4 +15,15 @@ export const authenticateUser = async (req, res, next) => {
   } catch (error) {
     throw new UnauthenticatedError("Authentication token is missing");
   }
+};
+
+export const authorizedPermissions = (...roles) => {
+  console.log(roles);
+  return (req, res, next) => {
+    console.log(roles);
+    if (!roles.includes(req.user.role)) {
+      throw new UnauthorizedError("Unauthorized to access this route");
+    }
+    next();
+  };
 };
