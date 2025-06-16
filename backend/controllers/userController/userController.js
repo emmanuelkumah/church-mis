@@ -8,6 +8,9 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+  const obj = { ...req.body };
+  delete obj.password; // Remove password from update object
+  const updatedUser = await UserModel.findByIdAndUpdate(req.user.userId, obj);
   res.status(StatusCodes.OK).json({ msg: "update user" });
 };
 

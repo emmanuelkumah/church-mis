@@ -7,9 +7,10 @@ import {
   updateUser,
   getApplicationStats,
 } from "../controllers/userController/userController.js";
+import { validateUpdateUserInput } from "../middleware/validationMiddleware.js";
 
 router.get("/current-user", getCurrentUser);
-router.patch("/update-user", updateUser);
+router.patch("/update-user", validateUpdateUserInput, updateUser);
 router.get("/application-stats", getApplicationStats);
 
 export default router;
