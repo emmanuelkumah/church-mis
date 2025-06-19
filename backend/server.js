@@ -24,7 +24,10 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/cs", authenticateUser, csRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", authenticateUser, userRoutes);
-
+//create dummy route
+app.use("/api/v1/test", (req, res) => {
+  res.json({ message: "Test route is working!" });
+});
 //middleware for error handling
 app.use(errorHandlerMiddleware);
 
