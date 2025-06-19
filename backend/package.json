@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup-project": "npm i && cd client && npm i",
-    "dev": "nodemon server.js"
+    "server": "nodemon server",
+    "client": "cd .. && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
   },
   "keywords": [],
   "author": "",
